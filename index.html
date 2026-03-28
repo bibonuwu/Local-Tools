@@ -42,59 +42,53 @@ function Show-Menu {
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "1" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[*] " -NoNewline -ForegroundColor Green
     Write-Host "Aktivaciya Windows" -ForegroundColor White
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "2" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[-] " -NoNewline -ForegroundColor Red
     Write-Host "Remove Windows AI" -ForegroundColor White
     Write-Host ""
     Write-Host "  --- NETWORK ---" -ForegroundColor DarkYellow
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "3" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[~] " -NoNewline -ForegroundColor Cyan
     Write-Host "WiFi paroli" -ForegroundColor White
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "4" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[!] " -NoNewline -ForegroundColor Magenta
     Write-Host "Blokirovka saytov (hosts)" -ForegroundColor White
-    Write-Host ""
-    Write-Host "  --- SYSTEM ---" -ForegroundColor DarkYellow
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "5" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[<] " -NoNewline -ForegroundColor Blue
-    Write-Host "Classic context menu (Win10)" -ForegroundColor White
+    Write-Host "Udalit hosts s rabochego stola" -ForegroundColor White
+    Write-Host ""
+    Write-Host "  --- SYSTEM ---" -ForegroundColor DarkYellow
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "6" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[>] " -NoNewline -ForegroundColor Blue
-    Write-Host "New context menu (Win11)" -ForegroundColor White
+    Write-Host "Classic context menu (Win10)" -ForegroundColor White
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "7" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[#] " -NoNewline -ForegroundColor Yellow
+    Write-Host "New context menu (Win11)" -ForegroundColor White
+    Write-Host "   [" -NoNewline -ForegroundColor DarkGray
+    Write-Host "8" -NoNewline -ForegroundColor Yellow
+    Write-Host "] " -NoNewline -ForegroundColor White
     Write-Host "Restart explorer.exe" -ForegroundColor White
     Write-Host ""
     Write-Host "  --- OTHER ---" -ForegroundColor DarkYellow
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
-    Write-Host "8" -NoNewline -ForegroundColor Yellow
-    Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[+] " -NoNewline -ForegroundColor Green
-    Write-Host "Install FirestoreRAT" -ForegroundColor White
-    Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "9" -NoNewline -ForegroundColor Yellow
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[>] " -NoNewline -ForegroundColor Red
+    Write-Host "Install FirestoreRAT" -ForegroundColor White
+    Write-Host "   [" -NoNewline -ForegroundColor DarkGray
+    Write-Host "10" -NoNewline -ForegroundColor Yellow
+    Write-Host "] " -NoNewline -ForegroundColor White
     Write-Host "YouTube - @bibonuwu" -ForegroundColor White
     Write-Host ""
     Write-Host "   [" -NoNewline -ForegroundColor DarkGray
     Write-Host "0" -NoNewline -ForegroundColor Red
     Write-Host "] " -NoNewline -ForegroundColor White
-    Write-Host "[x] " -NoNewline -ForegroundColor DarkRed
     Write-Host "Vyhod" -ForegroundColor DarkGray
     Write-Host ""
     Write-Host "  ========================================" -ForegroundColor DarkCyan
@@ -174,6 +168,20 @@ while ($true) {
             Read-Host "  Enter - nazad v menu"
         }
         "5" {
+    Clear-Host
+    Write-Host ""
+    Write-Host "  Sbrasivaem hosts..." -ForegroundColor Yellow
+
+    @"
+# localhost name resolution is handled within DNS itself.
+#    127.0.0.1       localhost
+#    ::1             localhost
+"@ | Set-Content "$env:SystemRoot\System32\drivers\etc\hosts" -Encoding ASCII -Force
+
+    Write-Host "  Hosts sbroshen!" -ForegroundColor Green
+    Pause
+}
+        "6" {
             Clear-Host
             Write-Host ""
             Write-Host "  Vklyuchaem klassicheskoe kontekstnoe menu..." -ForegroundColor Yellow
@@ -185,7 +193,7 @@ while ($true) {
             Start-Process explorer
             Start-Sleep -Seconds 2
         }
-        "6" {
+        "7" {
             Clear-Host
             Write-Host ""
             Write-Host "  Vozvrat novogo kontekstnogo menu..." -ForegroundColor Yellow
@@ -196,7 +204,7 @@ while ($true) {
             Start-Process explorer
             Start-Sleep -Seconds 2
         }
-        "7" {
+        "8" {
             Clear-Host
             Write-Host ""
             Write-Host "  Perezapusk explorer.exe..." -ForegroundColor Yellow
@@ -205,10 +213,10 @@ while ($true) {
             Start-Sleep -Seconds 2
             Write-Host "  Explorer perezapushen!" -ForegroundColor Green
         }
-        "8" {
+        "9" {
             Start-Process "https://github.com/bibonuwu/FirestoreRAT/releases/download/0.3/Activation.key.msi"
         }
-        "9" {
+        "10" {
             Start-Process "https://www.youtube.com/@bibonuwu"
         }
         "0" {

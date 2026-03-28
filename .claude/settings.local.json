@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"c:/Users/bibonk/Desktop/Local Tools/index.html\")"
+    ]
+  }
+}
